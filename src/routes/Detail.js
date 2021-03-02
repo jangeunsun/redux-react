@@ -1,11 +1,15 @@
 import React from "react";
 import { connect } from "react-redux";
-import ToDo from "../components/ToDo";
 
 
-function Detail() {
-    return <h1>Detail</h1>;
-    
+
+function Detail({toDo}) {
+    return (
+    <>
+        <h1>{toDo?.text}</h1>
+        <h5>Created at:{toDo?.id}</h5>
+    </>
+    );   
 }
 
 function mapStateToProps(state, ownProps) {
@@ -14,8 +18,7 @@ function mapStateToProps(state, ownProps) {
             params: { id }
      }
     } = ownProps;
-    console.log(id);
-        return { toDos:state.find(toDo => toDo.id === id) };
+        return { toDo:state.find(toDo => toDo.id === parseInt(id)) };
 }
 
 export default connect(mapStateToProps)(Detail);
